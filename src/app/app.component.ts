@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Course } from 'src/app/model/course';
 import {COURSES} from '../db-data';
 
 @Component({
@@ -7,7 +8,11 @@ import {COURSES} from '../db-data';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  courses=COURSES;
 
 
+  onCourseSelected(course:Course){
+    console.log("App component - button click.....",course);
+  }
 
 }
