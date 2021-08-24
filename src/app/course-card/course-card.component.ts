@@ -1,4 +1,4 @@
-import { Component, Input, OnInit,EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Course } from 'src/app/model/course';
 
 @Component({
@@ -7,32 +7,38 @@ import { Course } from 'src/app/model/course';
   styleUrls: ['./course-card.component.css']
 })
 export class CourseCardComponent implements OnInit {
-  @Input() course:Course;
-  
-  @Input() cardIndex:number;
+  @Input() course: Course;
+
+  @Input() cardIndex: number;
 
   @Output('courseSelected')
-  courseEmitter=new EventEmitter<Course>();
+  courseEmitter = new EventEmitter<Course>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  isImageVisible(){
+  isImageVisible() {
     return this.course.iconUrl ? true : false;
   }
 
-  cardClasses(){
+  cardClasses() {
     // if(this.course.category=='BEGINNER'){
     //   return ['beginner'];
     // }
     return {
-      'beginner':this.course.category=='BEGINNER',
+      'beginner': this.course.category == 'BEGINNER',
     }
   }
 
-  onCourseViewed(){
+  cardStyles() {
+    return {
+      'background-image': 'url('+ this.course.iconUrl+')'
+    }
+  }
+
+  onCourseViewed() {
     console.log("card component - button click.....");
     this.courseEmitter.emit(this.course);
   }
