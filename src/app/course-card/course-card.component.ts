@@ -9,7 +9,7 @@ import { Course } from 'src/app/model/course';
 export class CourseCardComponent implements OnInit {
   @Input() course:Course;
   
-  @Input() cardIndex;
+  @Input() cardIndex:number;
 
   @Output('courseSelected')
   courseEmitter=new EventEmitter<Course>();
@@ -24,7 +24,12 @@ export class CourseCardComponent implements OnInit {
   }
 
   cardClasses(){
-    // retrun 
+    if(this.course.category=='BEGINNER'){
+      return ['beginner'];
+    }
+    // return {
+    //   'beginner':this.course.category=='BEGINNER',
+    // }
   }
 
   onCourseViewed(){
