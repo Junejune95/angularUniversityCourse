@@ -1,38 +1,39 @@
 
-##  Angular Core Deep Dive (Video Course)
+## The Angular Router In Depth Course
 
-This repository contains the code of the [Angular Core Deep Dive](https://angular-university.io/course/angular-course).
+This repository contains the code of the course [Angular Router In Depth](https://angular-university.io/course/angular-router-course).
 
 This course repository is updated to Angular v12.
 
-![Angular Core Deep Dive](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png)
+![Angular Router In Depth](https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-router-course.jpg)
 
 
 # Installation pre-requisites
 
-IMPORTANT: Please use Node 14 (Long Term Support version).
+Please use the latest Node long-term support (LTS) version.
+
 
 # Installing the Angular CLI
 
 With the following command the angular-cli will be installed globally in your machine:
 
-    npm install -g @angular/cli
+    npm install -g @angular/cli 
 
 
 # How To install this repository
 
 We can install the master branch using the following commands:
 
-    git clone https://github.com/angular-university/angular-course.git
-
+    git clone https://github.com/angular-university/angular-router-course.git
+    
 This repository is made of several separate npm modules, that are installable separately. For example, to run the au-input module, we can do the following:
-
-    cd angular-course
+    
+    cd angular-router-course
     npm install
 
 Its also possible to install the modules as usual using npm:
 
-    npm install
+    npm install 
 
 NPM 5 or above has the big advantage that if you use it you will be installing the exact same dependencies than I installed in my machine, so you wont run into issues caused by semantic versioning updates.
 
@@ -50,13 +51,13 @@ This is a small Node REST API server.
 
 To run the frontend part of our code, we will use the Angular CLI:
 
-    npm start
+    npm start 
 
 The application is visible at port 4200: [http://localhost:4200](http://localhost:4200)
 
 
 
-# Important
+# Important 
 
 This repository has multiple branches, have a look at the beginning of each section to see the name of the branch.
 
@@ -73,21 +74,6 @@ We can checkout the remote branch and start tracking it with a local branch that
 It's also possible to download a ZIP file for a given branch,  using the branch dropdown on this page on the top left, and then selecting the Clone or Download / Download as ZIP button.
 
 # Other Courses
-
-# RxJs In Practice Course
-
-If you are looking for the [RxJs In Practice Course](https://angular-university.io/course/rxjs-course), the repo with the full code can be found here:
-
-![RxJs In Practice Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png)
-
-
-# NgRx In Depth Course
-
-If you are looking for the [NgRx In Depth Course](https://angular-university.io/course/angular-ngrx-course), the repo with the full code can be found here:
-
-![NgRx In Depth Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-ngrx-course.png)
-
-
 
 # Angular PWA Course
 

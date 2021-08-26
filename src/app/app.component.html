@@ -1,26 +1,50 @@
-<div class="top-menu">
+<mat-sidenav-container fullscreen>
 
-  <img class="logo"
-       src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+  <mat-toolbar color="primary">
 
-</div>
+    <div class="toolbar-tools">
 
-<div>
+      <a class="menu-item" mat-button>
+        <span>Courses</span>
+      </a>
 
-  <div class="courses" *ngIf="courses$ | async as courses">
+      <a class="menu-item" mat-button [routerLink]="'about'" routerLinkActive="menu-item-active">
+        <span>About</span>
+      </a>
 
-    <course-card *ngFor="let course of courses"
-                 [course]="course" (courseChanged)="save($event)">
+      <a mat-button class="menu-item" routerLink="/login" routerLinkActive="menu-item-active">
+        <mat-icon>account_circle</mat-icon>
+        <span>Login</span>
+      </a>
 
-      <course-image [src]="course.iconUrl"></course-image>
+    </div>
 
-    </course-card>
+    <a mat-button class="menu-item" *ngIf="auth.isLoggedIn$ | async">
+      <mat-icon>help</mat-icon>
+    </a>
 
-  </div>
+    <a mat-button class="menu-item" (click)="logout()" *ngIf="auth.isLoggedIn$ | async">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </a>
 
 
-</div>
+    <div class="filler"></div>
+
+    <ng-container *ngIf="(auth.user$ | async) as user">
+
+      <img class="profile-picture" [src]="user.pictureUrl">
+
+    </ng-container>
 
 
 
+  </mat-toolbar>
 
+  <messages></messages>
+
+  <loading></loading>
+
+  <router-outlet></router-outlet>
+
+</mat-sidenav-container>
