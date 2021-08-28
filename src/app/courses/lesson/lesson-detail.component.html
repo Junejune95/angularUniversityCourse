@@ -1,4 +1,5 @@
-<a class="back" href="javascript:void(0)">Back To Course</a>
+<a class="back" href="javascript:void(0)"
+[routerLink]="['../..']">Back To Course</a>
 
 <div class="lesson-detail" *ngIf="lesson">
 
@@ -8,7 +9,8 @@
 
   <div class="video-container">
 
-    <mat-icon class="nav-button" *ngIf="!lesson.first">
+    <mat-icon class="nav-button" *ngIf="!lesson.first"
+    (click)="previous(lesson)">
       navigate_before
     </mat-icon>
 
@@ -17,7 +19,8 @@
 
     </iframe>
 
-    <mat-icon class="nav-button" *ngIf="!lesson.last">
+    <mat-icon class="nav-button" *ngIf="!lesson.last"
+    (click)="next(lesson)">
       navigate_next
     </mat-icon>
 
