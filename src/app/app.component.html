@@ -22,6 +22,9 @@
 
     </div>
 
+<div class="courses">
+    <course-card
+        *ngFor="let course of courses;index as i;first as isFirst;last as isLast;even as isEven;odd aa isOdd"
+        (courseSelected)="onCourseSelected($event)" [course]="course" [cardIndex]="i + 1">
+    </course-card>
 </div>
-
-
