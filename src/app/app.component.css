@@ -1,38 +1,19 @@
 
->>> body {
-    margin: 0;
+.top-menu {
+    background: #1976d2;
+    padding: 2px 15px;
 }
 
-main {
-    margin: 30px;
-}
-
-.user-avatar {
-  max-height: 35px;
-  border-radius: 4px;
-
-}
-
-.toolbar-tools {
-  display: flex;
+.logo {
+  max-height: 55px;
 }
 
 
-.filler {
-  flex: 1 1 auto;
-  width: 100%;
-}
-
-.menu-item {
-  text-transform: uppercase;
-  cursor:pointer;
-}
-
-.menu-item.menu-item-active {
-  text-decoration: underline;
+.courses {
+    max-width: 400px;
+    margin: 50px auto;
 }
 
 
-.profile-picture {
-  max-height: 40px;
-}
+
+

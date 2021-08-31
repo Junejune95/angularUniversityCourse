@@ -1,37 +1,18 @@
 import {Request, Response} from 'express';
-import {COURSES} from "./db-data";
-import {setTimeout} from 'timers';
+import {findCourseById} from '../src/db-data';
 
 
 export function saveCourse(req: Request, res: Response) {
 
-/*
-  console.log("ERROR saving course!");
-  res.sendStatus(500);
-  return;
-*/
-
-
     const id = req.params["id"],
-        changes = req.body;
+          changes = req.body;
 
-    console.log("Saving course changes", id, JSON.stringify(changes));
+    console.log("Saving course", id, JSON.stringify(changes));
 
-    const newCourse = {
-      ...COURSES[id],
-      ...changes
-    };
+    const course = findCourseById(id);
 
-    COURSES[id] = newCourse;
+    course.description = changes.description;
 
-    console.log("new course version", newCourse);
-
-    setTimeout(() => {
-
-        res.status(200).json(COURSES[id]);
-
-    }, 2000);
-
-
+    res.status(200).json(course);
 
 }
