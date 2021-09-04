@@ -1,53 +1,27 @@
 <div class="top-menu">
 
-    <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+    <img class="logo"
+         src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 
 </div>
 
-<!-- <div *ngFor="let pair of course | keyvalue">
-    {{pair.key + ":" + pair.value}}
-</div>
 
-<div class="demo">
-    <div>
-        {{startDate | date : 'MMM/dd/yyyy'}}
-    </div>
-    <div>
-        {{title | titlecase}}
-    </div>
-    <div>
-        {{price | currency}}
-    </div>
-    <div>
-        Percentage:{{rate | percent }}
-    </div>
-</div> -->
-<!--     [class.is-first]="isFirst"
-    [class.is-last]="isLast"
-    [class.is-even]="isEven"
-    [class.is-odd]="isOdd" -->
 
-<button (click)="onCourseEdited()">Edit Course</button>
+<div class="courses" *ngIf="courses[0] as course">
 
-<div class="courses" #container *ngIf="courses[0] as course">
-    <ng-template #blankImage let-courseName="description">
-        <p class="warn">{{courseName}} has no image yet!</p>
-        <img src="/assets/empty-image.png">
-    </ng-template>
+    <course-card
+            (courseSelected)="onCourseSelected($event)"
+                 [course]="course">
 
-    <!-- <ng-container *ngTemplateOutlet="blankImage;context:{description:course.description}">
-
-    </ng-container>
-
-    <hr>
-    <hr>
-    <hr> -->
-    <course-card (courseSelected)="onCourseSelected($event)" [course]="course" [noImageTpl]="blankImage">
         <course-image [src]="course.iconUrl"></course-image>
+
         <div class="course-description">
-            {{course.longDescription}}
+            {{ course.longDescription }}
         </div>
+
     </course-card>
-    <!-- <course-card (courseSelected)="onCourseSelected($event)" [course]="courses[2]" #cardRef2>
-    </course-card> -->
+
+
 </div>
+
+

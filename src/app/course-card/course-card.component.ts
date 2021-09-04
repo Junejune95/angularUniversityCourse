@@ -1,62 +1,78 @@
-import { Component, Input, OnInit, EventEmitter, Output, ContentChild, ContentChildren, AfterViewInit, AfterContentInit, QueryList, TemplateRef } from '@angular/core';
-import { CourseImageComponent } from 'src/app/course-image/course-image.component';
-import { Course } from 'src/app/model/course';
+import {
+    AfterContentInit,
+    AfterViewInit,
+    Component,
+    ContentChild,
+    ContentChildren,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output, QueryList, TemplateRef,
+    ViewChild
+} from '@angular/core';
+import {COURSES} from '../../db-data';
+import {Course} from '../model/course';
+import {CourseImageComponent} from '../course-image/course-image.component';
 
 @Component({
-  selector: 'course-card',
-  templateUrl: './course-card.component.html',
-  styleUrls: ['./course-card.component.css']
+    selector: 'course-card',
+    templateUrl: './course-card.component.html',
+    styleUrls: ['./course-card.component.css']
 })
-export class CourseCardComponent implements OnInit,AfterViewInit,AfterContentInit {
-  @Input() course: Course;
+export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentInit {
 
-  @Input() cardIndex: number;
+    @Input()
+    course: Course;
 
-  @Input() noImageTpl:TemplateRef<any>;
-  
-  @Output('courseSelected')
-  courseEmitter = new EventEmitter<Course>();
+    @Input()
+    cardIndex: number;
 
-  // @ContentChild(CourseImageComponent)
-  // image:CourseImageComponent;
+    @Output('courseSelected')
+    courseEmitter = new EventEmitter<Course>();
 
-  @ContentChildren(CourseImageComponent)
-  images:QueryList<CourseImageComponent>;
+    @ContentChildren(CourseImageComponent, {read: ElementRef})
+    images: QueryList<ElementRef>;
 
-  constructor() { }
+    constructor() {
 
-  ngAfterContentInit(): void {
-    console.log(this.images);
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngAfterViewInit(){
-    console.log(this.images);
-  }
-
-  isImageVisible() {
-    return this.course.iconUrl ? true : false;
-  }
-
-  cardClasses() {
-    // if(this.course.category=='BEGINNER'){
-    //   return ['beginner'];
-    // }
-    return {
-      'beginner': this.course.category == 'BEGINNER',
     }
-  }
 
-  cardStyles() {
-    return {
-      'background-image': 'url('+ this.course.iconUrl+')'
+    ngAfterViewInit() {
+
     }
-  }
 
-  onCourseViewed() {
-    console.log("card component - button click.....");
-    this.courseEmitter.emit(this.course);
-  }
+    ngAfterContentInit() {
+
+    }
+
+    ngOnInit() {
+
+    }
+
+    isImageVisible() {
+        return this.course && this.course.iconUrl;
+    }
+
+    onCourseViewed() {
+
+        this.courseEmitter.emit(this.course);
+
+    }
+
+    cardClasses() {
+        if (this.course.category == 'BEGINNER') {
+            return 'beginner';
+        }
+    }
+
+    cardStyles() {
+        return {
+            'background-image': 'url(' + this.course.iconUrl + ')'
+
+        };
+    }
+
+
+
 }
