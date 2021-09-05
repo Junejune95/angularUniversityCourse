@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
+import { HighlightDirective } from 'src/app/directives/highlight.directive';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,9 @@ export class AppComponent implements AfterViewInit {
 
     courses = COURSES;
 
+    // @ViewChild(HighlightDirective)
+    @ViewChild(CourseCardComponent,{read:HighlightDirective})
+    highlighted:HighlightDirective;
 
     @ViewChildren(CourseCardComponent, {read: ElementRef})
     cards : QueryList<ElementRef>;
@@ -22,7 +26,11 @@ export class AppComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
+      console.log(this.highlighted);
+    }
 
+    onToggle(isHighlighted:boolean){
+      console.log(isHighlighted);
     }
 
     onCourseSelected(course:Course) {
