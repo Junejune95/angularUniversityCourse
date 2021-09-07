@@ -1,26 +1,41 @@
-<div class="top-menu">
+<mat-sidenav-container fullscreen>
 
-  <img class="logo"
-       src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+    <mat-sidenav #start>
+        <mat-nav-list (click)="start.close()">
 
-</div>
+            <a mat-list-item routerLink="/">
+                <mat-icon>library_books</mat-icon>
+                <span>Courses</span>
+            </a>
 
-<div>
+            <a mat-list-item routerLink="/about">
+                <mat-icon>question_answer</mat-icon>
+                <span>About</span>
+            </a>
+            <a mat-list-item>
+                <mat-icon>person_add</mat-icon>
+                <span>Register</span>
+            </a>
 
-  <div class="courses" *ngIf="courses$ | async as courses">
+            <a mat-list-item routerLink="/login">
+                <mat-icon>account_circle</mat-icon>
+                <span>Login</span>
+            </a>
 
-    <course-card *ngFor="let course of courses"
-                 [course]="course" (courseChanged)="save($event)">
+        </mat-nav-list>
 
-      <course-image [src]="course.iconUrl"></course-image>
+    </mat-sidenav>
 
-    </course-card>
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="start.open('mouse')">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar>
 
-  </div>
+    <div class="main-content">
 
+        <router-outlet></router-outlet>
 
-</div>
+    </div>
 
-
-
-
+</mat-sidenav-container>

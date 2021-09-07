@@ -1,26 +1,63 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Course } from 'src/app/model/course';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+import {Injectable} from "@angular/core";
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Course} from "../model/course";
+import {map} from "rxjs/operators";
+import {Lesson} from "../model/lesson";
+
+
+@Injectable()
 export class CoursesService {
 
-  constructor(private http: HttpClient) { }
+    constructor(private http:HttpClient) {
 
-  loadCourses(): Observable<Course[]> {
-    const params = new HttpParams()
-      .set("page", "1")
-      .set("pageSize", "10");
+    }
 
-    return this.http.get<Course[]>('/api/courses', { params })
-  }
+    findCourseById(courseId: number): Observable<Course> {
+        return this.http.get<Course>(`/api/courses/${courseId}`);
+    }
 
-  saveCourse(course: Course) {
-    const headers = new HttpHeaders()
-      .set("X-Auth", "userId");
-    return this.http.put(`/api/courses/${course.id}`, course, { headers });
-  }
+    findCourseCategories() {
+      return this.http.get(`/api/course-categories`)
+        .pipe(
+          map(res => res["categories"])
+        );
+    }
+
+    findAllCourses(): Observable<Course[]> {
+        return this.http.get('/api/courses')
+            .pipe(
+                map(res => res['payload'])
+            );
+    }
+
+    findAllCourseLessons(courseId:number): Observable<Lesson[]> {
+        return this.http.get('/api/lessons', {
+            params: new HttpParams()
+                .set('courseId', courseId.toString())
+                .set('pageNumber', "0")
+                .set('pageSize', "1000")
+        }).pipe(
+            map(res =>  res["payload"])
+        );
+    }
+
+    findLessons(
+        courseId:number, filter = '', sortOrder = 'asc',
+        pageNumber = 0, pageSize = 3):  Observable<Lesson[]> {
+
+        return this.http.get('/api/lessons', {
+            params: new HttpParams()
+                .set('courseId', courseId.toString())
+                .set('filter', filter)
+                .set('sortOrder', sortOrder)
+                .set('pageNumber', pageNumber.toString())
+                .set('pageSize', pageSize.toString())
+        }).pipe(
+            map(res =>  res["payload"])
+        );
+    }
+
 }
