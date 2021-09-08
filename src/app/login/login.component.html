@@ -2,13 +2,14 @@
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
 
-    <form class="login-form data-form" #loginForm="ngForm"
-    (ngSubmit)="login(loginForm,$event)">
+    <form class="login-form data-form" #loginForm="ngForm" (ngSubmit)="login(loginForm,$event)">
 
       <mat-form-field>
 
-        <input matInput type="email" name="email" ngModel #email=ngModel
-               placeholder="Email" minlength="3" maxlength="20" email required>
+        <input matInput type="email" name="email" ngModel #email=ngModel 
+        [ngModelOptions]="{updateOn:'blur'}"
+        (ngModelChange)="onEmailChange($event)"
+          placeholder="Email" minlength="3" maxlength="20" email required>
         <mat-error *ngIf="email.errors?.required">The email is madatory.</mat-error>
         <mat-error *ngIf="email.errors?.minlength">
           Your email must have minimum {{email.errors?.minlength?.requiredLength}} chars,
@@ -20,8 +21,7 @@
 
       <mat-form-field>
 
-        <input matInput type="password" placeholder="Password" name="password" 
-        ngModel #password=ngModel required>
+        <input matInput type="password" placeholder="Password" name="password" ngModel #password=ngModel required>
 
       </mat-form-field>
 
@@ -31,7 +31,7 @@
 
     </form>
     <div class="form-val">
-      {{email.errors | json}} 
+      {{email.value | json}}
     </div>
   </mat-card-content>
 </mat-card>
