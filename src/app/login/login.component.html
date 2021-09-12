@@ -7,7 +7,7 @@
       <mat-form-field>
         <!--         [ngModelOptions]="{updateOn:'blur'}"
         (ngModelChange)="onEmailChange($event)" -->
-        <input matInput type="email" name="email" [(ngModel)]="val.email" #email=ngModel placeholder="Email"
+        <input matInput type="email" name="email" ngModel #email=ngModel placeholder="Email"
           minlength="3" maxlength="20" email required>
         <mat-error *ngIf="email.errors?.required">The email is madatory.</mat-error>
         <mat-error *ngIf="email.errors?.minlength">
@@ -20,7 +20,7 @@
 
       <mat-form-field>
 
-        <input matInput type="password" placeholder="Password" [(ngModel)]="val.password" passwordStrength minlength="8"
+        <input matInput type="password" placeholder="Password" ngModel passwordStrength minlength="8"
           name="password" ngModel #password=ngModel required>
         <mat-error *ngIf="password.errors?.required">The password is madatory.</mat-error>
 
