@@ -1,0 +1,45 @@
+<div [formGroup]="form">
+    <mat-form-field>
+        <input matInput placeholder="Course Title" formControlName="title" #title>
+
+        <mat-hint align="end">
+            {{title.value.length}} / 60
+        </mat-hint>
+
+        <mat-error *ngIf="courseTitle.errors?.titleExits">
+            This title is already being used.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Select category" formControlName="category">
+            <ng-container *ngFor="let category of (courseCategories$ | async)">
+                <mat-option [value]="category.code">
+                    {{category.description}}
+                </mat-option>
+            </ng-container>
+            
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Release date" formControlName="releasedAt"
+         [matDatepicker]="releaseDatePicker">
+        <mat-datepicker-toggle [for]="releaseDatePicker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #releaseDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-checkbox color="primary" formControlName="downloadsAllowed">
+        Download Allowed?
+    </mat-checkbox>
+
+    <mat-form-field apperance="outline">
+        <textarea matInput placeholder="Description" formControlName="longDescription">
+
+        </textarea>
+    </mat-form-field>
+</div>
+
+<div class="form-val">
+    {{form.value | json}}
+</div>
+
