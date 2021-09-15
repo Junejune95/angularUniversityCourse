@@ -8,7 +8,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['create-course-step-2.component.scss']
 })
 export class CreateCourseStep2Component implements OnInit {
-
+  form=this.fb.group({
+    courseType:['premium',Validators.required]
+  });
+  constructor(private fb:FormBuilder){}
 
   ngOnInit() {
 
